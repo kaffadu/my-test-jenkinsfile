@@ -4,25 +4,25 @@ pipeline {
         terraform 'Terraform'
     }
 
-    stages {
-        stage ('checkout') {
-            steps {
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kaffadu/my-tf-iac-aws-repo.git']])
+
+    stages{
+        stage('Build'){
+            steps{
+                echo "Build Stage"
+            }
+        }
+        stage('Test'){
+            steps{
+                echo "Test Stage"
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo "Deploy Stage"
             }
         }
 
-        stage ('terraform init') {                              
-            steps {
-                sh ('terraform init')
-                }          
-        }
-        
 
-        stage ('terraform action') {
-            steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve')
-            }
         }
-    }
+
 }
